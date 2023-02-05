@@ -13,7 +13,7 @@ function App() {
     {
       id: 2,
       title: 'Finish Physics Assignment',
-      completed: false,
+      completed: true,
     },
     {
       id: 3,
@@ -30,8 +30,15 @@ function App() {
     console.log('todo edited');
   };
 
-  const completeTodo = () => {
-    console.log('todo completed');
+  const completeTodo = (todo: Todo) => {
+    const updatedTodos = todos.map((t) => {
+      if (t.id === todo.id) {
+        t.completed = !t.completed;
+      }
+      return t;
+    });
+
+    setTodos(updatedTodos);
   };
 
   const handleSumit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -74,10 +81,12 @@ function App() {
                 key={todo.id}
                 className='flex flex-row justify-between items-center p-4 bg-gray-700 rounded shadow-md'
               >
-                <span className='text-white'>{todo.title}</span>
+                <span className={`text-white ${todo.completed ? 'line-through' : null}`}>{todo.title}</span>
                 <div className='flex flex-row gap-4'>
                   <button className='text-gray-600 hover:text-gray-500'>Edit</button>
-                  <button className='text-gray-600 hover:text-gray-500'>Complete</button>
+                  <button className='text-gray-600 hover:text-gray-500' onClick={() => completeTodo(todo)}>
+                    {todo.completed ? 'Uncomplete' : 'Complete'}
+                  </button>
                 </div>
               </li>
             ))}
