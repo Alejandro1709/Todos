@@ -14,6 +14,38 @@ function App() {
             </button>
           </form>
         </header>
+        <section className='mt-6'>
+          <ul className='flex flex-col gap-4 divide-y divide-gray-700' role='list'>
+            <li className='flex flex-row justify-between items-center p-4 bg-gray-700 rounded shadow-md'>
+              <span className='text-white'>Buy some milk</span>
+              <div className='flex flex-row gap-4'>
+                <button className='text-gray-600 hover:text-gray-500'>Edit</button>
+                <button className='text-gray-600 hover:text-gray-500'>Complete</button>
+              </div>
+            </li>
+            <li className='flex flex-row justify-between items-center p-4 bg-gray-700 rounded shadow-md'>
+              <span className='text-white'>Buy some milk</span>
+              <div className='flex flex-row gap-4'>
+                <button className='text-gray-600 hover:text-gray-500'>Edit</button>
+                <button className='text-gray-600 hover:text-gray-500'>Complete</button>
+              </div>
+            </li>
+            <li className='flex flex-row justify-between items-center p-4 bg-gray-700 rounded shadow-md'>
+              <span className='text-white'>Buy some milk</span>
+              <div className='flex flex-row gap-4'>
+                <button className='text-gray-600 hover:text-gray-500'>Edit</button>
+                <button className='text-gray-600 hover:text-gray-500'>Complete</button>
+              </div>
+            </li>
+            <li className='flex flex-row justify-between items-center p-4 bg-gray-700 rounded shadow-md'>
+              <span className='text-white'>Buy some milk</span>
+              <div className='flex flex-row gap-4'>
+                <button className='text-gray-600 hover:text-gray-500'>Edit</button>
+                <button className='text-gray-600 hover:text-gray-500'>Complete</button>
+              </div>
+            </li>
+          </ul>
+        </section>
       </section>
     </main>
   );
