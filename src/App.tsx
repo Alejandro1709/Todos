@@ -1,13 +1,66 @@
+import { useState } from 'react';
+import type Todo from './types/todo';
+
 function App() {
+  const [input, setInput] = useState('');
+
+  const [todos, setTodos] = useState<Todo[]>([
+    {
+      id: 1,
+      title: 'Buy some milk',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Finish Physics Assignment',
+      completed: false,
+    },
+    {
+      id: 3,
+      title: 'Read a book',
+      completed: false,
+    },
+  ]);
+
+  const addTodo = (todo: Todo) => {
+    setTodos([...todos, todo]);
+  };
+
+  const editTodo = () => {
+    console.log('todo edited');
+  };
+
+  const completeTodo = () => {
+    console.log('todo completed');
+  };
+
+  const handleSumit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!input) return;
+
+    const newTodo: Todo = {
+      id: todos.length + 1,
+      title: input,
+      completed: false,
+    };
+
+    addTodo(newTodo);
+
+    setInput('');
+  };
+
   return (
     <main className='flex justify-center bg-gray-800 min-h-screen'>
       <section className='md:w-2/5 w-4/5'>
         <header className='pt-8'>
-          <form className='flex flex-row gap-2 p-2 bg-gray-700 rounded shadow-md'>
+          <form className='flex flex-row gap-2 p-2 bg-gray-700 rounded shadow-md' onSubmit={handleSumit}>
             <input
               className='bg-transparent flex-1 outline-none placeholder:text-gray-600 text-white'
               type='text'
               placeholder='Buy some milk'
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
             />
             <button className='px-2 py-1 text-sm text-white bg-gray-600 rounded hover:bg-gray-700' type='submit'>
               Add
@@ -16,34 +69,18 @@ function App() {
         </header>
         <section className='mt-6'>
           <ul className='flex flex-col gap-4 divide-y divide-gray-700' role='list'>
-            <li className='flex flex-row justify-between items-center p-4 bg-gray-700 rounded shadow-md'>
-              <span className='text-white'>Buy some milk</span>
-              <div className='flex flex-row gap-4'>
-                <button className='text-gray-600 hover:text-gray-500'>Edit</button>
-                <button className='text-gray-600 hover:text-gray-500'>Complete</button>
-              </div>
-            </li>
-            <li className='flex flex-row justify-between items-center p-4 bg-gray-700 rounded shadow-md'>
-              <span className='text-white'>Buy some milk</span>
-              <div className='flex flex-row gap-4'>
-                <button className='text-gray-600 hover:text-gray-500'>Edit</button>
-                <button className='text-gray-600 hover:text-gray-500'>Complete</button>
-              </div>
-            </li>
-            <li className='flex flex-row justify-between items-center p-4 bg-gray-700 rounded shadow-md'>
-              <span className='text-white'>Buy some milk</span>
-              <div className='flex flex-row gap-4'>
-                <button className='text-gray-600 hover:text-gray-500'>Edit</button>
-                <button className='text-gray-600 hover:text-gray-500'>Complete</button>
-              </div>
-            </li>
-            <li className='flex flex-row justify-between items-center p-4 bg-gray-700 rounded shadow-md'>
-              <span className='text-white'>Buy some milk</span>
-              <div className='flex flex-row gap-4'>
-                <button className='text-gray-600 hover:text-gray-500'>Edit</button>
-                <button className='text-gray-600 hover:text-gray-500'>Complete</button>
-              </div>
-            </li>
+            {todos.map((todo: Todo) => (
+              <li
+                key={todo.id}
+                className='flex flex-row justify-between items-center p-4 bg-gray-700 rounded shadow-md'
+              >
+                <span className='text-white'>{todo.title}</span>
+                <div className='flex flex-row gap-4'>
+                  <button className='text-gray-600 hover:text-gray-500'>Edit</button>
+                  <button className='text-gray-600 hover:text-gray-500'>Complete</button>
+                </div>
+              </li>
+            ))}
           </ul>
         </section>
       </section>
