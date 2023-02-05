@@ -5,7 +5,6 @@ import initialTodos from './data';
 import type Todo from './types/todo';
 
 function App() {
-  const [isEditing, setIsEditing] = useState<boolean>(false);
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
 
   const addTodo = (todo: Todo) => {
@@ -26,7 +25,7 @@ function App() {
   return (
     <main className='flex justify-center bg-gray-800 min-h-screen'>
       <section className='md:w-2/5 w-4/5'>
-        <Header todos={todos} onSubmitTodo={addTodo} isEditing={isEditing} onEdit={setIsEditing} />
+        <Header todos={todos} onSubmitTodo={addTodo} />
         <section className='mt-6'>
           <Todos todos={todos} onCompleteTodo={completeTodo} />
         </section>
