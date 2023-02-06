@@ -11,6 +11,17 @@ function App() {
     setTodos([...todos, todo]);
   };
 
+  const toggleEditTodo = (todo: Todo) => {
+    const updatedTodos = todos.map((t) => {
+      if (t.id === todo.id) {
+        t.isEditing = !t.isEditing;
+      }
+      return t;
+    });
+
+    setTodos(updatedTodos);
+  };
+
   const completeTodo = (todo: Todo) => {
     const updatedTodos = todos.map((t) => {
       if (t.id === todo.id) {
@@ -27,7 +38,7 @@ function App() {
       <section className='md:w-2/5 w-4/5'>
         <Header todos={todos} onSubmitTodo={addTodo} />
         <section className='mt-6'>
-          <Todos todos={todos} onCompleteTodo={completeTodo} />
+          <Todos todos={todos} onCompleteTodo={completeTodo} onToggle={toggleEditTodo} />
         </section>
       </section>
     </main>

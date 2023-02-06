@@ -17,7 +17,6 @@ function Header({ todos, onSubmitTodo }: HeaderProps) {
     const newTodo: Todo = {
       id: todos.length + 1,
       title: input,
-      completed: false,
     };
 
     onSubmitTodo(newTodo);
