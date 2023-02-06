@@ -28,7 +28,12 @@ function Todo({ todo, onToggle, onCompleteTodo }: TodoProps) {
       </div>
       {todo.isEditing && (
         <div className='flex flex-row gap-2'>
-          <button className='px-2 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700'>Cancel</button>
+          <button
+            className='px-2 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700'
+            onClick={() => onToggle(todo)}
+          >
+            Cancel
+          </button>
           <button className='px-2 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700'>Update</button>
         </div>
       )}
