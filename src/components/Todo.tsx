@@ -1,19 +1,18 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { TodoContext } from '../context/todoContext';
 import ITodo from '../types/todo';
 
 type TodoProps = {
   todo: ITodo;
-  onToggle: (todo: ITodo) => void;
-  onConfirm: (todo: ITodo) => void;
-  onCompleteTodo: (todo: ITodo) => void;
 };
 
-function Todo({ todo, onToggle, onConfirm, onCompleteTodo }: TodoProps) {
+function Todo({ todo }: TodoProps) {
   const [newInput, setNewInput] = useState<string>(todo.title);
 
+  const { completeTodo, toggleEditTodo, updateTodo } = useContext(TodoContext);
+
   const handleConfirm = (todo: ITodo) => {
-    console.log('handleConfirm', todo);
-    onConfirm({ ...todo, title: newInput });
+    updateTodo({ ...todo, title: newInput });
   };
 
   return (
@@ -39,15 +38,15 @@ function Todo({ todo, onToggle, onConfirm, onCompleteTodo }: TodoProps) {
         )}
         <div className='flex flex-row gap-4'>
           {todo.isEditing ? (
-            <button className='text-gray-600 hover:text-gray-500' onClick={() => onToggle(todo)}>
+            <button className='text-gray-600 hover:text-gray-500' onClick={() => toggleEditTodo(todo)}>
               Cancel
             </button>
           ) : (
-            <button className='text-gray-600 hover:text-gray-500' onClick={() => onToggle(todo)}>
+            <button className='text-gray-600 hover:text-gray-500' onClick={() => toggleEditTodo(todo)}>
               Edit
             </button>
           )}
-          <button className='text-gray-600 hover:text-gray-500' onClick={() => onCompleteTodo(todo)}>
+          <button className='text-gray-600 hover:text-gray-500' onClick={() => completeTodo(todo)}>
             {todo.completed ? 'Uncomplete' : 'Complete'}
           </button>
         </div>
