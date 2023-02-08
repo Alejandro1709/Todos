@@ -24,15 +24,20 @@ function Header() {
 
   return (
     <header className='pt-8'>
-      <form className='flex flex-row gap-2 p-2 bg-gray-700 rounded shadow-md' onSubmit={handleSubmit}>
+      <form className='flex flex-row gap-2 p-2 bg-gray-700 rounded shadow-md' onSubmit={handleSubmit} role='form'>
         <input
           className='bg-transparent flex-1 outline-none placeholder:text-gray-600 text-white'
           type='text'
           placeholder='Buy some milk'
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          role='textbox'
         />
-        <button className='px-2 py-1 text-sm text-white bg-gray-600 rounded hover:bg-gray-700' type='submit'>
+        <button
+          className='px-2 py-1 text-sm text-white bg-gray-600 rounded hover:bg-gray-700'
+          type='submit'
+          role='button'
+        >
           Add
         </button>
       </form>
