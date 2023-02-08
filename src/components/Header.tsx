@@ -1,11 +1,11 @@
-import { useContext, useState } from 'react';
-import { TodoContext } from '../context/todoContext';
+import { useState } from 'react';
+import useTodos from '../hooks/useTodos';
 import type Todo from '../types/todo';
 
 function Header() {
   const [input, setInput] = useState<string>('');
 
-  const { todos, addTodo } = useContext(TodoContext);
+  const { todos, addTodo } = useTodos();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,5 +1,5 @@
-import { useContext, useState } from 'react';
-import { TodoContext } from '../context/todoContext';
+import { useState } from 'react';
+import useTodos from '../hooks/useTodos';
 import ITodo from '../types/todo';
 
 type TodoProps = {
@@ -9,7 +9,7 @@ type TodoProps = {
 function Todo({ todo }: TodoProps) {
   const [newInput, setNewInput] = useState<string>(todo.title);
 
-  const { completeTodo, toggleEditTodo, updateTodo } = useContext(TodoContext);
+  const { completeTodo, toggleEditTodo, updateTodo } = useTodos();
 
   const handleConfirm = (todo: ITodo) => {
     updateTodo({ ...todo, title: newInput });
