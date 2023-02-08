@@ -7,7 +7,7 @@ import morgan from 'morgan';
 
 const app = express();
 
-const { PORT, ENV, CLIENT_URL } = config;
+const { PORT, ENV } = config;
 
 const t = initTRPC.create();
 
@@ -28,7 +28,7 @@ const appRouter = t.router({
 });
 
 app.use(express.json());
-app.use(cors({ origin: CLIENT_URL }));
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 if (ENV === 'development') {
   app.use(morgan('dev'));

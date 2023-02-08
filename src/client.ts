@@ -1,13 +1,8 @@
-import { createTRPCProxyClient } from '@trpc/client';
-import { httpBatchLink } from '@trpc/client/dist/links';
+import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 import { AppRouter } from '../server/src/server';
 
 const client = createTRPCProxyClient<AppRouter>({
-  links: [httpBatchLink({ url: import.meta.env.SERVER_URL })],
+  links: [httpBatchLink({ url: 'http://localhost:2023/trpc' })],
 });
 
-async function main() {
-  const result = await client.sayHi.query();
-}
-
-main();
+export default client;
