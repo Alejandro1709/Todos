@@ -1,13 +1,11 @@
 import { useState } from 'react';
+import useTodos from '../hooks/useTodos';
 import type Todo from '../types/todo';
 
-type HeaderProps = {
-  todos: Todo[];
-  onSubmitTodo: (todo: Todo) => void;
-};
-
-function Header({ todos, onSubmitTodo }: HeaderProps) {
+function Header() {
   const [input, setInput] = useState<string>('');
+
+  const { todos, addTodo } = useTodos();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,7 +17,7 @@ function Header({ todos, onSubmitTodo }: HeaderProps) {
       title: input,
     };
 
-    onSubmitTodo(newTodo);
+    addTodo(newTodo);
 
     setInput('');
   };
